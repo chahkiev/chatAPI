@@ -6,6 +6,23 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+type User struct {
+	ID       int64  `json:"user,omitempty"`
+	Username string `json:"username,omitempty"`
+}
+
+type Chat struct {
+	ID    int64  `json:"chat,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Users []int  `json:"users,omitempty"`
+}
+
+type Message struct {
+	Chat   int64  `json:"chat"`
+	Author int64  `json:"author"`
+	Text   string `json:"text"`
+}
+
 func InitDB(db *sql.DB) {
 	qs := []string{
 		`DROP TABLE IF EXISTS users;`,

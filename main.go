@@ -24,7 +24,7 @@ func main() {
 		panic(err)
 	}
 
-	chat.InitDB(db)
+	// chat.InitDB(db)
 
 	chatExplorer := chat.NewChatExplorer(db)
 	if err != nil {
@@ -32,13 +32,13 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-	r.HandleFunc("/users/add", chatExplorer.HandlerUsersAdd).
+	r.HandleFunc("/users/add", chatExplorer.HandlerUserAdd).
 		Methods("POST").
 		Headers("Content-Type", "application/json")
-	r.HandleFunc("/chats/add", chatExplorer.HandlerChatssAdd).
+	r.HandleFunc("/chats/add", chatExplorer.HandlerChatAdd).
 		Methods("POST").
 		Headers("Content-Type", "application/json")
-	r.HandleFunc("/messages/add", chatExplorer.HandlerMessagesAdd).
+	r.HandleFunc("/messages/add", chatExplorer.HandlerMessageAdd).
 		Methods("POST").
 		Headers("Content-Type", "application/json")
 	r.HandleFunc("/chats/get", chatExplorer.HandlerChatsGet).
