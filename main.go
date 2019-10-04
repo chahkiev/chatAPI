@@ -31,6 +31,13 @@ func main() {
 		panic(err)
 	}
 
+	// s := time.Now().UTC()
+	// fmt.Printf("%v \n", s)
+	// fmt.Printf("%T \n", s)
+
+	// query := fmt.Sprintf("INSERT INTO %s (username, created_at) VALUES (?, ?)", "users")
+	// chatExplorer.DB.Exec(query, "user_6", s)
+
 	r := mux.NewRouter()
 	r.HandleFunc("/users/add", chatExplorer.HandlerUserAdd).
 		Methods("POST").

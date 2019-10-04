@@ -50,7 +50,6 @@ func (chatExpl *ChatExplorer) HandlerUserAdd(w http.ResponseWriter, r *http.Requ
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusConflict)
 	}
-	// fmt.Println(user)
 
 	id, err := chatExpl.addUser(user.Username)
 	if err != nil {
@@ -74,7 +73,6 @@ func (chatExpl *ChatExplorer) HandlerChatAdd(w http.ResponseWriter, r *http.Requ
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusConflict)
 	}
-	fmt.Println(chat)
 
 	id, err := chatExpl.addChat(chat.Name, chat.Users)
 	if err != nil {
@@ -98,7 +96,6 @@ func (chatExpl *ChatExplorer) HandlerMessageAdd(w http.ResponseWriter, r *http.R
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusConflict)
 	}
-	fmt.Println(message)
 
 	id, err := chatExpl.addMessage(message.Chat, message.Author, message.Text)
 	if err != nil {

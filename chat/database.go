@@ -12,9 +12,14 @@ type User struct {
 }
 
 type Chat struct {
-	ID    int64  `json:"chat,omitempty"`
-	Name  string `json:"name,omitempty"`
-	Users []int  `json:"users,omitempty"`
+	ID    int64   `json:"chat,omitempty"`
+	Name  string  `json:"name,omitempty"`
+	Users []int64 `json:"users,omitempty"`
+}
+
+type ChatUser struct {
+	chat int64 `json:"chat,omitempty"`
+	user int64 `json:"user,omitempty"`
 }
 
 type Message struct {
@@ -37,14 +42,10 @@ created_at datetime NOT NULL,
 PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`,
 
-		`INSERT INTO users (id, username, created_at) VALUES
-(1,	'user_1',	'2011-12-18 13:17:17'),
-(2,	'user_2',	'2012-12-18 13:17:17');`,
-
 		`CREATE TABLE chats (
 id int(11) NOT NULL AUTO_INCREMENT,
 name varchar(255) NOT NULL,
-create_at datetime NOT NULL,
+created_at datetime NOT NULL,
 PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`,
 
