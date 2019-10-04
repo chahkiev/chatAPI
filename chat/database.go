@@ -68,6 +68,21 @@ PRIMARY KEY (id),
 FOREIGN KEY (chat) REFERENCES chats(id),
 FOREIGN KEY (author) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`,
+
+		// INSERTING TEST DATA
+		`INSERT INTO users (id, username, created_at) VALUES
+(1, 'user_1',	'2011-12-18 13:17:17'),
+(2, 'user_2',	'2012-12-18 13:17:17');`,
+
+		`INSERT INTO chats (id, name, created_at) VALUES
+(1, 'chat_1', '2012-12-18 13:17:17');`,
+
+		`INSERT INTO chat_user (chat, user) VALUES
+(1, 1),
+(1, 2);`,
+
+		`INSERT INTO messages (id ,chat, author, text, created_at) VALUES
+(1, 1, 1, 'some text message', '2012-12-18 13:17:17');`,
 	}
 
 	for _, q := range qs {
