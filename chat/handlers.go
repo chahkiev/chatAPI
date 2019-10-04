@@ -48,12 +48,13 @@ func (chatExpl *ChatExplorer) HandlerUserAdd(w http.ResponseWriter, r *http.Requ
 	err := json.Unmarshal(body, &user)
 
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusConflict)
+		handleError(w, err, http.StatusConflict)
 	}
 
 	id, err := chatExpl.addUser(user.Username)
 	if err != nil {
 		handleError(w, err, http.StatusConflict)
+		return
 	}
 
 	resp := struct {
@@ -71,12 +72,14 @@ func (chatExpl *ChatExplorer) HandlerChatAdd(w http.ResponseWriter, r *http.Requ
 	err := json.Unmarshal(body, &chat)
 
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusConflict)
+		handleError(w, err, http.StatusConflict)
+		return
 	}
 
 	id, err := chatExpl.addChat(chat.Name, chat.Users)
 	if err != nil {
 		handleError(w, err, http.StatusConflict)
+		return
 	}
 
 	resp := struct {
@@ -94,12 +97,14 @@ func (chatExpl *ChatExplorer) HandlerMessageAdd(w http.ResponseWriter, r *http.R
 	err := json.Unmarshal(body, &message)
 
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusConflict)
+		handleError(w, err, http.StatusConflict)
+		return
 	}
 
 	id, err := chatExpl.addMessage(message.Chat, message.Author, message.Text)
 	if err != nil {
 		handleError(w, err, http.StatusConflict)
+		return
 	}
 
 	resp := struct {

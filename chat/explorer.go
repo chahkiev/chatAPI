@@ -63,7 +63,7 @@ func (expl *ChatExplorer) addChat(chatName string, usersI interface{}) (int64, e
 
 func (expl *ChatExplorer) addMessage(chat int64, author int64, text string) (int64, error) {
 	created_at := time.Now().UTC()
-	query := fmt.Sprintf("INSERT INTO messages (chat, author, text, creates_at) VALUES (?, ?, ?, ?)")
+	query := fmt.Sprintf("INSERT INTO messages (chat, author, text, created_at) VALUES (?, ?, ?, ?)")
 	result, err := expl.DB.Exec(query, chat, author, text, created_at)
 	if err != nil {
 		return 0, err
