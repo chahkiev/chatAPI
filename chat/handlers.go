@@ -124,11 +124,11 @@ func (chatExpl *ChatExplorer) HandlerChatsGet(w http.ResponseWriter, r *http.Req
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusConflict)
 	}
-	fmt.Println(user)
 
 	data, err := chatExpl.getChats(user.ID)
 	if err != nil {
 		handleError(w, err, http.StatusConflict)
+		return
 	}
 
 	resp := struct {

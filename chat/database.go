@@ -23,9 +23,10 @@ type ChatUser struct {
 }
 
 type Message struct {
-	Chat   int64  `json:"chat"`
-	Author int64  `json:"author"`
-	Text   string `json:"text"`
+	Chat       int64  `json:"chat,omitempty"`
+	Author     int64  `json:"author,omitempty"`
+	Text       string `json:"text,omitempty"`
+	Created_at string `json:"created_at,omitempty"`
 }
 
 func InitDB(db *sql.DB) {
@@ -91,10 +92,13 @@ FOREIGN KEY (author) REFERENCES users(id)
 		`INSERT IGNORE INTO chat_user (chat, user) VALUES
 (1, 2),
 (1, 3),
-(2, 1);`,
+(2, 1),
+(1, 1);`,
 
 		`INSERT INTO messages (id ,chat, author, text, created_at) VALUES
-(1, 1, 1, 'some text message', '2012-12-18 13:17:17');`,
+(1, 1, 1, 'some', '2012-12-18 19:17:17'),
+(2, 1, 1, 'text', '2012-12-18 17:17:17'),
+(3, 2, 1, 'message', '2012-12-18 13:17:17');`,
 	}
 
 	for _, q := range qs {

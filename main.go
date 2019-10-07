@@ -24,7 +24,7 @@ func main() {
 		panic(err)
 	}
 
-	// chat.InitDB(db)
+	chat.InitDB(db)
 
 	chatExplorer := chat.NewChatExplorer(db)
 	if err != nil {
@@ -34,7 +34,6 @@ func main() {
 	// s := time.Now().UTC()
 	// fmt.Printf("%v \n", s)
 	// fmt.Printf("%T \n", s)
-
 	// query := fmt.Sprintf("INSERT INTO %s (username, created_at) VALUES (?, ?)", "users")
 	// chatExplorer.DB.Exec(query, "user_6", s)
 

@@ -72,7 +72,43 @@ func (expl *ChatExplorer) addMessage(chat int64, author int64, text string) (int
 }
 
 func (expl *ChatExplorer) getChats(user int64) ([]interface{}, error) {
-	return []interface{}{1, 2, 3, 4}, nil //it's test data
+	// getting Users Chats
+	query := fmt.Sprintf("SELECT chat FROM %s WHERE user = ?", "chat_user")
+	rows, err := expl.DB.Query(query, user)
+	if err != nil {
+		return []interface{}{}, err
+	}
+
+	var userChats = []int64{}
+	var userMessages = []interface{}{}
+
+	for rows.Next() {
+		var chatId int64
+		if err := rows.Scan(&chatId); err != nil {
+			return []interface{}{}, err
+		}
+		userChats = append(userChats, chatId)
+	}
+
+	// getting last Message from Users Chats
+	for _, chat := range userChats {
+		query := fmt.Sprintf("SELECT text, created_at FROM %s WHERE chat = ? order by created_at desc limit 1", "messages")
+		rows, err := expl.DB.Query(query, chat)
+		if err != nil {
+			return []interface{}{}, err
+		}
+
+		for rows.Next() {
+			var message = Message{}
+			if err := rows.Scan(&message.Text, &message.Created_at); err != nil {
+				return []interface{}{}, err
+			}
+			message.Chat = chat
+			message.Author = user
+			userMessages = append(userMessages, message)
+		}
+	}
+	return userMessages, nil
 }
 
 func (expl *ChatExplorer) getMessages(chat int64) ([]interface{}, error) {
