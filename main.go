@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
@@ -14,14 +15,25 @@ import (
 var (
 	// DSN это соединение с базой
 	// docker run -p 3306:3306 -v $(PWD):/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=golang -d mysql
-	DSN = "root:1234@tcp(127.0.0.1:3306)/golang?"
+	DSN                 = "root:1234@tcp(127.0.0.1:3306)/golang?"
+	numberOfFailTryings = 5 // 5 * 1 min delay = 5 minutes
 )
 
 func main() {
 	db, err := sql.Open("mysql", DSN)
 	err = db.Ping() // первое подключение к базе
-	if err != nil {
-		panic(err)
+	tryingsToConnectDB := 0
+
+	for {
+		if tryingsToConnectDB == numberOfFailTryings {
+			panic("Can't connect to database")
+		}
+		if err = db.Ping(); err != nil {
+			tryingsToConnectDB++
+			time.Sleep(time.Minute * 1)
+			continue
+		}
+		break
 	}
 
 	chat.InitDB(db)

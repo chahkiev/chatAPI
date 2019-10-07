@@ -31,8 +31,7 @@ type Case struct {
 }
 
 var (
-	client              = &http.Client{Timeout: time.Second}
-	numberOfFailTryings = 5 // 5 * 1 min delay = 5 minutes
+	client = &http.Client{Timeout: time.Second}
 )
 
 func PrepareTestApis(db *sql.DB) {
