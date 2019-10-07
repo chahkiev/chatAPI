@@ -78,6 +78,7 @@ func (expl *ChatExplorer) getChats(user int64) ([]interface{}, error) {
 	if err != nil {
 		return []interface{}{}, err
 	}
+	defer rows.Close()
 
 	var userChats = []int64{}
 	var userMessages = []interface{}{}
@@ -97,6 +98,7 @@ func (expl *ChatExplorer) getChats(user int64) ([]interface{}, error) {
 		if err != nil {
 			return []interface{}{}, err
 		}
+		defer rows.Close()
 
 		for rows.Next() {
 			var message = Message{}
@@ -108,9 +110,11 @@ func (expl *ChatExplorer) getChats(user int64) ([]interface{}, error) {
 			userMessages = append(userMessages, message)
 		}
 	}
+	// TODO Sorting of results
 	return userMessages, nil
 }
 
 func (expl *ChatExplorer) getMessages(chat int64) ([]interface{}, error) {
+	// TODO
 	return []interface{}{1, 2, 3, 4}, nil //it's test data
 }

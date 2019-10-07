@@ -79,26 +79,26 @@ FOREIGN KEY (chat) REFERENCES chats(id),
 FOREIGN KEY (author) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`,
 
-		// INSERTING TEST DATA
-		`INSERT IGNORE INTO users (id, username, created_at) VALUES
-(1, 'user_1',	'2011-12-18 13:17:17'),
-(2, 'user_2',	'2012-12-18 13:17:17'),
-(3, 'user_3',	'2011-12-18 13:17:17');`,
+		// 		// INSERTING TEST DATA
+		// 		`INSERT IGNORE INTO users (id, username, created_at) VALUES
+		// (1, 'user_1',	'2011-12-18 13:17:17'),
+		// (2, 'user_2',	'2012-12-18 13:17:17'),
+		// (3, 'user_3',	'2011-12-18 13:17:17');`,
 
-		`INSERT IGNORE INTO chats (id, name, created_at) VALUES
-(1, 'chat_1', '2012-12-18 13:17:17'),
-(2, 'chat_2', '2012-12-18 13:17:17');`,
+		// 		`INSERT IGNORE INTO chats (id, name, created_at) VALUES
+		// (1, 'chat_1', '2012-12-18 13:17:17'),
+		// (2, 'chat_2', '2012-12-18 13:17:17');`,
 
-		`INSERT IGNORE INTO chat_user (chat, user) VALUES
-(1, 2),
-(1, 3),
-(2, 1),
-(1, 1);`,
+		// 		`INSERT IGNORE INTO chat_user (chat, user) VALUES
+		// (1, 2),
+		// (1, 3),
+		// (2, 1),
+		// (1, 1);`,
 
-		`INSERT INTO messages (id ,chat, author, text, created_at) VALUES
-(1, 1, 1, 'some', '2012-12-18 19:17:17'),
-(2, 1, 1, 'text', '2012-12-18 17:17:17'),
-(3, 2, 1, 'message', '2012-12-18 13:17:17');`,
+		// 		`INSERT INTO messages (id ,chat, author, text, created_at) VALUES
+		// (1, 1, 1, 'some', '2012-12-18 19:17:17'),
+		// (2, 1, 1, 'text', '2012-12-18 17:17:17'),
+		// (3, 2, 1, 'message', '2012-12-18 13:17:17');`,
 	}
 
 	for _, q := range qs {
