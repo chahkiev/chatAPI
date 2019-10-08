@@ -2,7 +2,7 @@ package main
 
 import (
 	"bytes"
-	chat "chatAPI/chat"
+	chat "chatModule/chat"
 	"database/sql"
 	"encoding/json"
 	"fmt"

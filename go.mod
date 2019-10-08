@@ -1,4 +1,4 @@
-module chatAPI
+module chatModule
 
 go 1.13
 

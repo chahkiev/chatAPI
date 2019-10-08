@@ -1,7 +1,7 @@
 package main
 
 import (
-	chat "chatAPI/chat"
+	chat "chatModule/chat"
 	"database/sql"
 	"fmt"
 	"log"
