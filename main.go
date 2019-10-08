@@ -1,13 +1,14 @@
 package main
 
 import (
-	chat "chatAPI/chat"
 	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	chat "github.com/chahkiev/chatAPI/chat"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"

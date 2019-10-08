@@ -1,3 +1,3 @@
-module github.com/chahkiev/chatAPI
+module github/chahkiev/chatAPI/chat
 
 go 1.13
