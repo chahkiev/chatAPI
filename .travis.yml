@@ -7,5 +7,6 @@ branches:
 script:
   - docker run -p 3305:3306 --name db -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=golang -d mysql
   - go mod download
+  - go build -o main .
   - DB_PASSWORD=1234 DB_ADDRESS=127.0.0.1 DB_PORT=3305 go test -v
   - docker stop db
