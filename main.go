@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -13,11 +14,19 @@ import (
 )
 
 var (
-	// DSN это соединение с базой
-	// docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=golang -d mysql
-	DSN                 = "root:1234@tcp(172.20.0.6:3306)/golang?" // static-network address of mysql container
-	DSN_TEST            = "root:1234@tcp(127.0.0.1:3305)/golang?"  // address of mysql container for tests
-	numberOfFailTryings = 5                                        // 5 * 1 min delay = 5 minutes
+	// connect for database
+	DSN = fmt.Sprintf("root:%s@tcp(%s:%s)/golang?",
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_ADDRESS"),
+		os.Getenv("DB_PORT"))
+
+	// container for tests: `docker run -p <port>:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=golang -d mysql`
+	// ENV for TESTS:
+	// os.Getenv("DB_ADDRESS")  -  127.0.0.1
+	// os.Getenv("DB_PORT")     -  <port>
+	// os.Getenv("DB_PASSWORD") -  1234
+
+	numberOfFailTryings = 5 // 5 * 1 min delay = 5 minutes
 )
 
 func main() {

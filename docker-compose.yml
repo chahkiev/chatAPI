@@ -8,10 +8,11 @@ services:
     links:
       - mysql
     environment:
-      - "DB_PORT=3306"
-      - "DB_HOST=mysql"
-      - "DB_NAME=golang"
-      - "DB_PASS=1234"
+      - DB_HOST=mysql
+      - DB_ADDRESS=172.20.0.6
+      - DB_PORT=3306
+      - DB_PASSWORD=1234
+      - DB_NAME=golang
     networks:
       static-network:
         ipv4_address: 172.20.0.5

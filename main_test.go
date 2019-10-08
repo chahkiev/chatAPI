@@ -131,7 +131,7 @@ func CleanupTestApis(db *sql.DB) {
 }
 
 func TestApis(t *testing.T) {
-	db, err := sql.Open("mysql", DSN_TEST)
+	db, err := sql.Open("mysql", DSN)
 	tryingsToConnectDB := 0
 
 	for {
