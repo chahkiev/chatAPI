@@ -1,3 +1,8 @@
+[![Travis][build-badge]][build]
+
+[build-badge]: https://img.shields.io/travis/chahkiev/chatAPI/master.png?style=flat-square
+[build]: https://travis-ci.org/chahkiev/chatAPI
+
 # chatAPI
 
 Задание – разработать чат-сервер, предоставляющий HTTP API для работы с чатами и сообщениями пользователя.
