@@ -22,7 +22,7 @@ type CR map[string]interface{}
 
 type Case struct {
 	ts     httptest.Server
-	Method string // GET по-умолчанию в http.NewRequest если передали пустую строку
+	Method string
 	Path   string
 	Query  string
 	Status int
@@ -131,7 +131,7 @@ func CleanupTestApis(db *sql.DB) {
 }
 
 func TestApis(t *testing.T) {
-	db, err := sql.Open("mysql", DSN)
+	db, err := sql.Open("mysql", DSN_TEST)
 	tryingsToConnectDB := 0
 
 	for {

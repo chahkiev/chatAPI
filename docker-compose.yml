@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  web:
+    build: .
+    ports:
+      - 9000:9000
+    links:
+      - mysql
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=mysql"
+      - "DB_NAME=golang"
+      - "DB_PASS=1234"
+    networks:
+      static-network:
+        ipv4_address: 172.20.0.5
+  
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=golang
+    networks:
+      static-network:
+        ipv4_address: 172.20.0.6
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+

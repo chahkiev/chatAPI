@@ -14,9 +14,10 @@ import (
 
 var (
 	// DSN это соединение с базой
-	// docker run -p 3306:3306 -v $(PWD):/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=golang -d mysql
-	DSN                 = "root:1234@tcp(127.0.0.1:3306)/golang?"
-	numberOfFailTryings = 5 // 5 * 1 min delay = 5 minutes
+	// docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=golang -d mysql
+	DSN                 = "root:1234@tcp(172.20.0.6:3306)/golang?" // static-network address of mysql container
+	DSN_TEST            = "root:1234@tcp(127.0.0.1:3305)/golang?"  // address of mysql container for tests
+	numberOfFailTryings = 5                                        // 5 * 1 min delay = 5 minutes
 )
 
 func main() {
