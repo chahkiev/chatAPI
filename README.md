@@ -1,3 +1,8 @@
+[![Travis][build-badge]][build]
+
+[build-badge]: https://img.shields.io/travis/chahkiev/chatAPI/master.png?style=flat-square
+[build]: https://travis-ci.org/chahkiev/chatAPI
+
 # chatAPI
 
 Задание – разработать чат-сервер, предоставляющий HTTP API для работы с чатами и сообщениями пользователя.
@@ -115,3 +120,30 @@ curl --header "Content-Type: application/json" \
 Ответ: список всех сообщений чата со всеми полями, отсортированный по времени создания сообщения (от раннего к позднему). Или HTTP-код ошибки.
 
 #
+
+### Стек технологий:
+* Golang;
+* MySQL – СУБД;
+* Github – репозиторий для кода;
+* Docker - ПО для контейнеризации;
+* Docker-compose – пакетный менеджер для Docker;
+* Travis CI – сервис для сборки и тестирования ПО.
+
+
+## Deploy
+```bash
+$ cd ~
+$ git clone https://github.com/chahkiev/chatAPI.git
+$ cd chatAPI/
+$ docker-compose build
+$ docker-compose up
+```
+
+## Testing
+
+```bash
+$ cd ~
+$ cd ChatServer/
+$ docker run -p <port>:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=golang -d mysql
+$ DB_ADDRESS=127.0.0.1 DB_PORT=<port> DB_PASSWORD=1234 go test -v
+```
