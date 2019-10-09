@@ -1,5 +1,5 @@
 FROM golang:latest
-LABEL maintainer="Chahkiev Magomed <chahkiev@mail.ru>"
+LABEL maintainer="Chahkiev Magomed <chahkiev98@mail.ru>"
 
 WORKDIR /home/chatAPI
 

@@ -31,7 +31,6 @@ var (
 
 func main() {
 	db, err := sql.Open("mysql", DSN)
-	err = db.Ping() // первое подключение к базе
 	tryingsToConnectDB := 0
 
 	for {
